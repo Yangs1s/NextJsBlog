@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://vercel-blog-ebon-one.vercel.app
+
+# Sitemaps
+Sitemap: https://vercel-blog-ebon-one.vercel.app/sitemap.xml
