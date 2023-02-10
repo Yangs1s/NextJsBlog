@@ -1,0 +1,42 @@
+---
+title: "eslint 에러를 잡아보자"
+date: "2023-02-08"
+tag: "eslint"
+---
+
+<div>Eslint를 설치하고 설정한 후 생겼던 에러</div>
+
+<br />
+
+<div>
+<p>
+ eslint관련해서 error가 잡히는게 많았습니다.
+ no-unused-vars는 react-icons를 쓸때 계속 잡히더라고요
+
+그래서 구글링한 결과
+.eslint.json에서 밑에 나온 내용같이 하면 해결이 된다는걸 알았습니다.
+
+보면 tailwindcss 또한 eslint 관련해서 적용이 되지 않는 부분들이 발견되고
+
+
+
+<button>JustClick</button>
+<br />
+<CodeBlock>
+  {`
+    yarn add -D eslint-plugin-tailwindcss
+    `}
+</CodeBlock>
+
+</p>
+</div>
+
+<br />
+
+<CodeBlock>
+  {`
+  //eslint 관련 에러
+     "no-unused-vars":"off",
+    "no-extra-semi":"off",
+  `}
+</CodeBlock>

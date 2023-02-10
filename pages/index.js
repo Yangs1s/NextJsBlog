@@ -1,32 +1,10 @@
 import Head from 'next/head';
-import Layout, { siteTitle } from '../components/Layout';
+import Layout, { siteTitle } from '../pages/_document';
 import utilStyles from '../styles/utils.module.css';
-import Date from '../components/Date';
-import { getSortedPostsData } from '../lib/posts';
-import Link from 'next/link';
-
+import { MAIL_URL } from '../components/constants/constants';
 //ssg
-export async function getStaticProps() {
-  const allPostsData = getSortedPostsData()
-  return {
-    props: {
-      allPostsData,
-    }
-  }
-}
-// export async function getStaticProps() {
-//   const response = await fetch('http://localhost:3000/api/posts')
-//   const json = await response.json()
-//   return {
-//     props: {
-//       allPostsData: json.allPostsData,
-//     }
-//   }
-// }
-// 
 
 //ssr
-
 // export async function getServerSideProps() {
 //   const allPostsData = getSortedPostsData()
 //   return {
@@ -35,7 +13,9 @@ export async function getStaticProps() {
 //     }
 //   }
 // }
-
+const name = '양성진'
+const age = '32살'
+const address = '인천 서구 신현동'
 export default function Home({ allPostsData }) {
   //CSR
   // const [allPostsData, setAllPostsData] = useState([])
@@ -47,32 +27,25 @@ export default function Home({ allPostsData }) {
 
 
   return (
-    <Layout home>
+    <>
       <Head>
         <title>{siteTitle}</title>
       </Head>
       <section className={utilStyles.headingMd}>
-        <p>[Your Self Introduction]</p>
-        <p>
-          (This is a sample website - you’ll be building a site like this on{' '}
-          <a href="https://nextjs.org/learn">our Next.js tutorial</a>.)
-        </p>
+        <div className='flex flex-col m-auto w-[400px] divide-y-2 divide-black bg-slate-100 rounded-lg p-3'>
+          <h1 className='font-extrabold text-3xl '>WHO ARE YOU?</h1>
+          <p className='font-extrabold'>NAME</p> {name}
+          <br />
+          <p className='font-extrabold'>AGE </p> {age}
+          <br />
+          <p className='font-extrabold'>EMAIL </p> {MAIL_URL}
+          <br />
+          <p className='font-extrabold'>ADDRESS </p> {address}
+          <br />
+          <p></p>
+        </div>
       </section>
 
-      <section className={`${utilStyles.headingMd} ${utilStyles.padding1px}`}>
-        <h2 className={utilStyles.headingLg}>Blog</h2>
-        <ul className={utilStyles.list}>
-          {allPostsData.map(({ id, date, title }) => (
-            <li className={utilStyles.listItem} key={id}>
-              <Link href={`/posts/${id}`}>{title}</Link>
-              <br />
-              <small className={utilStyles.lightText}>
-                <Date dateString={date} />
-              </small>
-            </li>
-          ))}
-        </ul>
-      </section>
-    </Layout>
+    </>
   );
 }
